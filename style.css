@@ -1,7 +1,7 @@
 body {
     display: flex;
-    /*justify-content: center;
-    align-items: center;*/
+    justify-content: center;
+    align-items: center;
 }
 
 .display {
@@ -9,14 +9,23 @@ body {
     height: 680px;
     border: 3px solid black;
     line-height: 10px;
-    background: rgb(154, 166, 128);
+    background: #9aa680;
 }
 
-.pixel {
+.pixel-inactive {
+    display: inline-block;
+    padding: 9px;
+    margin: 5px;
+    background: #889470;
+    border: 3px solid #9aa680;
+    outline: 4px solid #889470;
+}
+
+.pixel-active {
     display: inline-block;
     padding: 9px;
     margin: 5px;
     background: black;
-    border: 3px solid rgb(154, 166, 128);
+    border: 3px solid #9aa680;
     outline: 4px solid black;
 }
