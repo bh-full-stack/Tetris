@@ -8,41 +8,39 @@ window.onload = function() {
     var display = document.querySelector(".display");
     renderDisplay();
 
+    var pixelList = document.querySelectorAll(".pixel");
+    refreshDisplay();
+
     function renderDisplay() {
         for (var i = 0; i < 200; i++) {
-            display.insertAdjacentHTML(
-                'beforeend',
-                '<div class="pixel"></div>'
-            );
+            display.insertAdjacentHTML("beforeend", "<div class='pixel'></div>");
         }
     }
 
     function refreshDisplay() {
         for (var i = 0; i < 200; i++) {
-
             if (getLastNthDigitOfBigInt(matrix, i)) {
-                document.querySelector(".pixel").classList.add("active");
+                pixelList[i].classList.add("active");
             } else {
-                //document.querySelector(".pixel").classList.remove("active");
+                pixelList[i].classList.remove("active");
             }
-            document.querySelectorAll(".pixel").forEach(function (element) {
-                element.classList.add("active");
-            })
         }
     }
 
     document.onkeydown = function(event) {
         switch (event.key) {
             case "ArrowLeft":
-                matrix = matrix.divide(2);
-                console.log(matrix);
-                refreshDisplay();
+                if (!pixelList[0].classList.contains("active")) {
+                    matrix = matrix.divide(2);
+                }
                 break;
             case "ArrowRight":
-                console.log(event.key);
-
+                if (!pixelList[9].classList.contains("active")) {
+                    matrix = matrix.multiply(2);
+                }
                 break;
         }
+        refreshDisplay();
     }
 };
 
