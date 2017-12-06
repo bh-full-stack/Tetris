@@ -6,19 +6,24 @@ function getLastNthDigitOfBigInt(matrix, n) {
 window.onload = function() {
     renderDisplay();
 
-    var leftWall = bigInt(0);
-    var rightWall = bigInt(0);
+    var leftBorder = bigInt(0);
+    var rightBorder = bigInt(0);
+    var bottomBorder = bigInt(0);
     var matrix = bigInt(49200);
     var pixelList = document.querySelectorAll(".pixel");
-    
+
     refreshDisplay();
 
     for (var i = 0; i < 191; i += 10) {
-        leftWall = leftWall.add(bigInt(2).pow(i));
+        leftBorder = leftBorder.add(bigInt(2).pow(i));
     }
 
     for (var i = 9; i < 200; i += 10) {
-        rightWall = rightWall.add(bigInt(2).pow(i));
+        rightBorder = rightBorder.add(bigInt(2).pow(i));
+    }
+
+    for (var i = 191; i < 200; i++) {
+        bottomBorder = bottomBorder.add(bigInt(2).pow(i));
     }
 
     function renderDisplay() {
@@ -42,17 +47,19 @@ window.onload = function() {
     document.onkeydown = function(event) {
         switch (event.key) {
             case "ArrowLeft":
-                if (leftWall.and(matrix) == 0) {
+                if (leftBorder.and(matrix) == 0) {
                     matrix = matrix.divide(2);
                 }
                 break;
             case "ArrowRight":
-                if (rightWall.and(matrix) == 0) {
+                if (rightBorder.and(matrix) == 0) {
                     matrix = matrix.multiply(2);
                 }
                 break;
             case "ArrowDown":
-                matrix = matrix.multiply(2 ** 10);
+                if (bottomBorder.and(matrix) == 0) {
+                    matrix = matrix.multiply(2 ** 10);
+                }
         }
         refreshDisplay();
     }
