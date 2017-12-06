@@ -11,9 +11,9 @@ function renderDisplay() {
     }
 }
 
-function refreshDisplay(matrix) {
+function refreshDisplay(element) {
     for (var i = 0; i < 200; i++) {
-        if (getLastNthDigitOfBigInt(matrix, i)) {
+        if (getLastNthDigitOfBigInt(element, i)) {
             pixelList[i].classList.add("active");
         } else {
             pixelList[i].classList.remove("active");
@@ -21,9 +21,9 @@ function refreshDisplay(matrix) {
     }
 }
 
-function getLastNthDigitOfBigInt(matrix, n) {
+function getLastNthDigitOfBigInt(element, n) {
     var divider = bigInt(2).pow(n);
-    return matrix.divide(divider).mod(2).value;
+    return element.divide(divider).mod(2).value;
 }
 
 
