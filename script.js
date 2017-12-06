@@ -6,17 +6,43 @@ function getLastNthDigitOfBigInt(matrix, n) {
 window.onload = function() {
     var matrix = bigInt(49200);
     var display = document.querySelector(".display");
+    renderDisplay();
 
-    for (var i = 0; i < 200; i++) {
-        var status;
-        if (getLastNthDigitOfBigInt(matrix, i)) {
-            status = "pixel-active";
-        } else {
-            status = "pixel-inactive";
+    function renderDisplay() {
+        for (var i = 0; i < 200; i++) {
+            display.insertAdjacentHTML(
+                'beforeend',
+                '<div class="pixel"></div>'
+            );
         }
-        display.insertAdjacentHTML(
-            'beforeend',
-            '<div class="' + status + '"></div>'
-        );
+    }
+
+    function refreshDisplay() {
+        for (var i = 0; i < 200; i++) {
+
+            if (getLastNthDigitOfBigInt(matrix, i)) {
+                document.querySelector(".pixel").classList.add("active");
+            } else {
+                //document.querySelector(".pixel").classList.remove("active");
+            }
+            document.querySelectorAll(".pixel").forEach(function (element) {
+                element.classList.add("active");
+            })
+        }
+    }
+
+    document.onkeydown = function(event) {
+        switch (event.key) {
+            case "ArrowLeft":
+                matrix = matrix.divide(2);
+                console.log(matrix);
+                refreshDisplay();
+                break;
+            case "ArrowRight":
+                console.log(event.key);
+
+                break;
+        }
     }
 };
+
