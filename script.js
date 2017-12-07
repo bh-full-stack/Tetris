@@ -32,7 +32,7 @@ window.onload = function() {
     }
 
     function descendElement() {
-        if (bottomBorder.and(element) == 0) {
+        if ((bottomBorder.and(element) == 0) && (world.and(element.multiply(2 ** 10)) == 0)) {
             element = element.multiply(2 ** 10);
         } else {
             world = world.or(element);
