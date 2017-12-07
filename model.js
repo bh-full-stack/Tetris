@@ -1,3 +1,4 @@
+var gameCycle;
 var world = bigInt(0);
 var leftBorder = bigInt(0);
 var rightBorder = bigInt(0);
@@ -15,6 +16,10 @@ var elements = [
 
 function getRandomElement() {
     element = elements[Math.floor(Math.random()*7)];
+    if (world.and(element) != 0) {
+        return true;
+    }
+    return false;
 }
 
 function createBorders() {
@@ -29,13 +34,22 @@ function createBorders() {
     }
 }
 
+function gameOver() {
+    clearInterval(gameCycle);
+    temp = document.createElement("div");
+    temp.className ="gratulation";
+    document.querySelector(".display").appendChild(temp);
+}
+
 function descendElement() {
     if ((bottomBorder.and(element) == 0) && (world.and(element.multiply(2 ** 10)) == 0)) {
         element = element.multiply(2 ** 10);
     } else {
         world = world.or(element);
         removeFullRows();
-        getRandomElement();
+        if (getRandomElement()) {
+            gameOver();
+        }
     }
     refreshDisplay(element, world);
 }

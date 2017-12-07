@@ -10,6 +10,7 @@ body {
     border: 3px solid black;
     line-height: 10px;
     background: #9aa680;
+    position: relative;
 }
 
 .pixel {
@@ -24,4 +25,14 @@ body {
 .active {
     background: black;
     outline: 4px solid black;
+}
+
+.gratulation {
+    width: 340px;
+    height: 272px;
+    background: #9aa680;
+    position: absolute;
+    top: 204px;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
 }

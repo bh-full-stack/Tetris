@@ -4,7 +4,8 @@ window.onload = function() {
     renderDisplay();
     getRandomElement();
     refreshDisplay(element, world);
-    setInterval(descendElement, 100);
+
+    gameCycle = setInterval(descendElement, 200);
 
     document.onkeydown = function(event) {
         switch (event.key) {
