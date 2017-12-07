@@ -16,7 +16,7 @@ window.onload = function() {
     ];
 
     function getRandomElement() {
-        element = elements [Math.floor(Math.random()*6)];
+        element = elements[Math.floor(Math.random()*6)];
     }
 
     function createBorders() {
@@ -36,16 +36,29 @@ window.onload = function() {
             element = element.multiply(2 ** 10);
         } else {
             world = world.or(element);
+            removeFullRows();
             getRandomElement();
         }
         refreshDisplay(element, world);
+    }
+
+    function removeFullRows() {
+        var above, below;
+        for (var i = 0; i < 20; i++) {
+            if (getPartOfBigInt(world, i * 10, 10) == 1023) {
+                above = getPartOfBigInt(world, 0, i * 10).multiply(1024);
+                below = getPartOfBigInt(world , (i + 1) * 10, 200 - (i + 1) * 10);
+                below = below.multiply(bigInt(2).pow((i + 1) * 10));
+                world = above.add(below);
+            }
+        }
     }
 
     createBorders();
     renderDisplay();
     getRandomElement();
     refreshDisplay(element, world);
-    setInterval(descendElement, 200);
+    setInterval(descendElement, 100);
 
     document.onkeydown = function(event) {
         switch (event.key) {

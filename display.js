@@ -15,7 +15,7 @@ function renderDisplay() {
 function refreshDisplay(element, world) {
     var temp = world.or(element);
     for (var i = 0; i < 200; i++) {
-        if (getLastNthDigitOfBigInt(temp, i)) {
+        if (getPartOfBigInt(temp, i, 1).value) {
             pixelList[i].classList.add("active");
         } else {
             pixelList[i].classList.remove("active");
@@ -23,9 +23,10 @@ function refreshDisplay(element, world) {
     }
 }
 
-function getLastNthDigitOfBigInt(element, n) {
-    var divider = bigInt(2).pow(n);
-    return element.divide(divider).mod(2).value;
+function getPartOfBigInt(binaryNumber, cutFromTail, length) {
+    var divider = bigInt(2).pow(cutFromTail);
+    var modulo = bigInt(2).pow(length);
+    return binaryNumber.divide(divider).mod(modulo);
 }
 
 
