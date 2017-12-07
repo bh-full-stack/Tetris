@@ -1,8 +1,9 @@
 var pixelList = [];
 
 function renderDisplay() {
+    var temp;
     for (var i = 0; i < 200; i++) {
-        var temp = document.createElement("div");
+        temp = document.createElement("div");
         temp.className = "pixel";
         document
             .querySelector(".display")
@@ -11,9 +12,10 @@ function renderDisplay() {
     }
 }
 
-function refreshDisplay(element) {
+function refreshDisplay(element, world) {
+    var temp = world.or(element);
     for (var i = 0; i < 200; i++) {
-        if (getLastNthDigitOfBigInt(element, i)) {
+        if (getLastNthDigitOfBigInt(temp, i)) {
             pixelList[i].classList.add("active");
         } else {
             pixelList[i].classList.remove("active");

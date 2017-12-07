@@ -4,6 +4,7 @@ window.onload = function() {
     var rightBorder = bigInt(0);
     var bottomBorder = bigInt(0);
     var element = bigInt(49200);
+    var world = bigInt(0);
 
     for (var i = 0; i < 191; i += 10) {
         leftBorder = leftBorder.add(bigInt(2).pow(i));
@@ -18,13 +19,16 @@ window.onload = function() {
     function descend() {
         if (bottomBorder.and(element) == 0) {
             element = element.multiply(2 ** 10);
+        } else {
+            world = world.or(element);
+            element = bigInt(49200);
         }
-        refreshDisplay(element);
+        refreshDisplay(element, world);
     }
 
     renderDisplay();
-    refreshDisplay(element);
-    setInterval(descend, 1000);
+    refreshDisplay(element, world);
+    setInterval(descend, 200);
 
     document.onkeydown = function(event) {
         switch (event.key) {
@@ -38,7 +42,7 @@ window.onload = function() {
                     element = element.multiply(2);
                 }
         }
-        refreshDisplay(element);
+        refreshDisplay(element, world);
     }
 };
 
