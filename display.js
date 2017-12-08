@@ -30,15 +30,15 @@ function getPartOfBigInt(binaryNumber, cutFromTail, length) {
 }
 
 
-function gratulation() {
-    document.querySelector(".gratulation").style.display = "block";
+function endGame() {
+    document.querySelector(".end-game-box").style.display = "block";
     if (localStorage.name === undefined) {
-        document.querySelector(".gratulation__form").style.display = "block";
+        document.querySelector(".end-game-box__form").style.display = "block";
         document.querySelector("#name").focus();
 
     } else {
-        document.querySelector(".gratulation__message").style.display = "block";
-        document.querySelector(".gratulation__text").textContent =
+        document.querySelector(".end-game-box__message").style.display = "block";
+        document.querySelector(".end-game-box__text").textContent =
             "Thank you for playing" + ((localStorage.name == "") ? "!" : ", " + localStorage.name);
     }
 }

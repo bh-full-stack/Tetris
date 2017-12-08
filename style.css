@@ -34,7 +34,7 @@ h1 {
     outline: 4px solid black;
 }
 
-.gratulation {
+.end-game-box {
     font-family: monospace;
     display: none;
     flex-direction: column;
@@ -48,12 +48,12 @@ h1 {
     border-bottom: 3px solid black;
 }
 
-.gratulation__form {
+.end-game-box__form {
     display: none;
     margin-top: 44px;
 }
 
-.gratulation__input {
+.end-game-box__input {
     box-sizing: border-box;
     outline: #889470;
     font-family: monospace;
@@ -65,14 +65,14 @@ h1 {
     background: #889470;
 }
 
-.gratulation__label {
+.end-game-box__label {
     display: block;
     font-size: 18px;
     text-align: center;
     margin-bottom: 1.5em;
 }
 
-.gratulation__message {
+.end-game-box__message {
     display: none;
     text-align: center;
     font-size: 23px;
@@ -80,6 +80,8 @@ h1 {
     margin-top: 32px;
 }
 
-.gratulation__text {
+.end-game-box__text {
     margin: 5px 0;
+    height: 70px;
 }
+
