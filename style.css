@@ -4,6 +4,20 @@ body {
     align-items: center;
 }
 
+h1 {
+    text-align: center;
+    font-family: monospace;
+}
+
+input {
+    display: block;
+    margin: 0 auto;
+    width: 180px;
+    font-size: 36px;
+    border: 3px solid black;
+    background: #889470;
+}
+
 .display {
     width: 340px;
     height: 680px;
@@ -28,11 +42,12 @@ body {
 }
 
 .gratulation {
+    display: none;
     width: 340px;
-    height: 272px;
+    height: 264px;
     background: #9aa680;
     position: absolute;
-    top: 204px;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
+    top: 205px;
+    border-top: 3px solid black;
+    border-bottom: 3px solid black;
 }

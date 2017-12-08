@@ -34,13 +34,6 @@ function createBorders() {
     }
 }
 
-function gameOver() {
-    clearInterval(gameCycle);
-    temp = document.createElement("div");
-    temp.className ="gratulation";
-    document.querySelector(".display").appendChild(temp);
-}
-
 function descendElement() {
     if ((bottomBorder.and(element) == 0) && (world.and(element.multiply(2 ** 10)) == 0)) {
         element = element.multiply(2 ** 10);
@@ -48,7 +41,8 @@ function descendElement() {
         world = world.or(element);
         removeFullRows();
         if (getRandomElement()) {
-            gameOver();
+            clearInterval(gameCycle);
+            gratulhation();
         }
     }
     refreshDisplay(element, world);

@@ -30,4 +30,9 @@ function getPartOfBigInt(binaryNumber, cutFromTail, length) {
 }
 
 
+function gratulation() {
+    document.querySelector(".gratulation").style.display = "block";
+}
+
+
 
