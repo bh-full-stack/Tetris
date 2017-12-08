@@ -23,13 +23,6 @@ function refreshDisplay(element, world) {
     }
 }
 
-function getPartOfBigInt(binaryNumber, cutFromTail, length) {
-    var divider = bigInt(2).pow(cutFromTail);
-    var modulo = bigInt(2).pow(length);
-    return binaryNumber.divide(divider).mod(modulo);
-}
-
-
 function endGame() {
     document.querySelector(".end-game-box").style.display = "block";
     if (localStorage.name === undefined) {
@@ -43,5 +36,22 @@ function endGame() {
     }
 }
 
+function showEndGameBoxMessage(name) {
+    document.querySelector(".end-game-box__form").style.display = "none";
+    document.querySelector(".end-game-box__message").style.display = "block";
+    document.querySelector(".end-game-box__text").textContent =
+        "Thank you for playing" + ((name == "") ? "!" : ", " + name);
+}
 
+function hideEndGameBox() {
+    document.querySelector(".end-game-box").style.display = "none";
+    document.querySelector(".end-game-box__message").style.display = "none";
+    document.querySelector(".end-game-box__form").style.display = "none";
+}
 
+function showEndGameBoxForm() {
+    document.querySelector(".end-game-box__message").style.display = "none";
+    document.querySelector("#name").value = "";
+    document.querySelector(".end-game-box__form").style.display = "block";
+    document.querySelector("#name").focus();
+}
