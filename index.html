@@ -12,8 +12,16 @@
     <div class="display">
         <div class="gratulation">
             <h1>Game Over</h1>
-            <input type="name" autofocus>
-            <input type="button" value="Save">
+            <form class="gratulation__form">
+                <label class="gratulation__label" for="name">Please enter your name:</label>
+                <input class="gratulation__input" type="name" id="name" autofocus>
+                <input class="gratulation__input" type="button" id="save_button" value="Save">
+            </form>
+            <div class="gratulation__message">
+                <p class="gratulation__text"></p>
+                <input class="gratulation__input" type="button" value="New Game" id="new_game_button">
+                <input class="gratulation__input" type="button" value="Clear Name" id="clear_name_button">
+            </div>
         </div>
     </div>
 </body>

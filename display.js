@@ -32,6 +32,15 @@ function getPartOfBigInt(binaryNumber, cutFromTail, length) {
 
 function gratulation() {
     document.querySelector(".gratulation").style.display = "block";
+    if (localStorage.name === undefined) {
+        document.querySelector(".gratulation__form").style.display = "block";
+        document.querySelector("#name").focus();
+
+    } else {
+        document.querySelector(".gratulation__message").style.display = "block";
+        document.querySelector(".gratulation__text").textContent =
+            "Thank you for playing" + ((localStorage.name == "") ? "!" : ", " + localStorage.name);
+    }
 }
 
 
