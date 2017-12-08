@@ -42,7 +42,7 @@ function descendElement() {
         removeFullRows();
         if (getRandomElement()) {
             clearInterval(gameCycle);
-            gratulhation();
+            gratulation();
         }
     }
     refreshDisplay(element, world);
