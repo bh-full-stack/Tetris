@@ -10,6 +10,9 @@ window.onload = function() {
                 break;
             case "ArrowRight":
                 game.moveElement("Right");
+                break;
+            case "ArrowDown":
+                game.moveElement("Down");
         }
     };
 

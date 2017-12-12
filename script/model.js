@@ -6,6 +6,8 @@ var game = {
     bottomBorder: bigInt(0),
     element: bigInt(0),
     pixelList: [],
+    speed: 1000,
+    removedRows: 0,
     elements: [
         bigInt(49200),
         bigInt(120),
@@ -22,19 +24,22 @@ var game = {
     },
 
     new: function() {
+        game.speed = 1 / (2 ** Math.floor(game.removedRows / 10)) * 1000;
         game.isRunning = true;
         game.world = bigInt(0);
         game.setRandomElement();
-        game.cycle = setInterval(game.run, 20);
+        game.run();
     },
 
     run: function() {
+        clearTimeout(game.cycle);
         game.descendElement();
         display.refresh(game.getPixels());
+        game.cycle = setTimeout(game.run, game.speed);
     },
 
     end: function() {
-        clearInterval(game.cycle);
+        clearTimeout(game.cycle);
         modalWindow.show(localStorage.name);
     },
 
@@ -81,6 +86,10 @@ var game = {
                 if (game.rightBorder.and(game.element) == 0 && (game.world.and(game.element.multiply(2)) == 0)) {
                     game.element = game.element.multiply(2);
                 }
+                break;
+            case "Down":
+                game.speed = 20;
+                game.run();
         }
         display.refresh(game.getPixels());
     },
@@ -93,6 +102,8 @@ var game = {
             game.removeFullRows();
             if (game.setRandomElement()) {
                 game.end();
+            } else {
+                game.speed = 1 / (2 ** Math.floor(game.removedRows / 10)) * 1000;
             }
         }
     },
@@ -105,6 +116,7 @@ var game = {
                 below = getPartOfBigInt(game.world , (i + 1) * 10, 200 - (i + 1) * 10);
                 below = below.multiply(bigInt(2).pow((i + 1) * 10));
                 game.world = above.add(below);
+                game.removedRows += 1;
             }
         }
     }
