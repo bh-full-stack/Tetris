@@ -34,7 +34,7 @@ h1 {
     outline: 4px solid black;
 }
 
-.end-game-box {
+.modal-window {
     font-family: monospace;
     display: none;
     flex-direction: column;
@@ -48,12 +48,12 @@ h1 {
     border-bottom: 3px solid black;
 }
 
-.end-game-box__form {
+.modal-window__form {
     display: none;
     margin-top: 44px;
 }
 
-.end-game-box__input {
+.modal-window__input {
     box-sizing: border-box;
     outline: #889470;
     font-family: monospace;
@@ -65,14 +65,14 @@ h1 {
     background: #889470;
 }
 
-.end-game-box__label {
+.modal-window__label {
     display: block;
     font-size: 18px;
     text-align: center;
     margin-bottom: 1.5em;
 }
 
-.end-game-box__message {
+.modal-window__message {
     display: none;
     text-align: center;
     font-size: 23px;
@@ -80,7 +80,7 @@ h1 {
     margin-top: 32px;
 }
 
-.end-game-box__text {
+.modal-window__text {
     margin: 5px 0;
     height: 70px;
 }

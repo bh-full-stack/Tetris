@@ -1,11 +1,11 @@
 var game = {
     cycle: null,
-    isRunning: false,
     world: bigInt(0),
     leftBorder: bigInt(0),
     rightBorder: bigInt(0),
     bottomBorder: bigInt(0),
     element: bigInt(0),
+    pixelList: [],
     elements: [
         bigInt(49200),
         bigInt(120),
@@ -15,21 +15,29 @@ var game = {
         bigInt(49176),
         bigInt(57360)
     ],
+
+    init: function() {
+        display.render();
+        game.createBorders();
+    },
+
     new: function() {
         game.isRunning = true;
         game.world = bigInt(0);
-        game.createBorders();
         game.setRandomElement();
         game.cycle = setInterval(game.run, 20);
     },
+
     run: function() {
         game.descendElement();
-        refreshDisplay(game.element, game.world);
+        display.refresh(game.getPixels());
     },
+
     end: function() {
         clearInterval(game.cycle);
-        game.isRunning = false;
+        modalWindow.show(localStorage.name);
     },
+
     setRandomElement: function() {
         game.element = game.elements[Math.floor(Math.random()*7)];
         if (game.world.and(game.element) != 0) {
@@ -37,6 +45,7 @@ var game = {
         }
         return false;
     },
+
     createBorders: function() {
         for (var i = 0; i < 191; i += 10) {
             game.leftBorder = game.leftBorder.add(bigInt(2).pow(i));
@@ -48,6 +57,34 @@ var game = {
             game.bottomBorder = game.bottomBorder.add(bigInt(2).pow(i));
         }
     },
+
+    getPixels: function() {
+        var temp = game.world.or(game.element);
+        for (var i = 0; i < 200; i++) {
+            if (getPartOfBigInt(temp, i, 1).value) {
+                game.pixelList[i] = 1;
+            } else {
+                game.pixelList[i] = 0;
+            }
+        }
+        return game.pixelList;
+    },
+
+    moveElement: function(direction) {
+        switch (direction) {
+            case "Left":
+                if (game.leftBorder.and(game.element) == 0 && (game.world.and(game.element.divide(2)) == 0)) {
+                    game.element = game.element.divide(2);
+                }
+                break;
+            case "Right":
+                if (game.rightBorder.and(game.element) == 0 && (game.world.and(game.element.multiply(2)) == 0)) {
+                    game.element = game.element.multiply(2);
+                }
+        }
+        display.refresh(game.getPixels());
+    },
+
     descendElement: function() {
         if ((game.bottomBorder.and(game.element) == 0) && (game.world.and(game.element.multiply(2 ** 10)) == 0)) {
             game.element = game.element.multiply(2 ** 10);
@@ -56,10 +93,10 @@ var game = {
             game.removeFullRows();
             if (game.setRandomElement()) {
                 game.end();
-                endGame();
             }
         }
     },
+
     removeFullRows: function() {
         var above, below;
         for (var i = 0; i < 20; i++) {

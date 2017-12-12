@@ -4,24 +4,24 @@
     <title>Tetris</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="node_modules/big-integer/BigInteger.js"></script>
-    <script src="display.js"></script>
-    <script src="model.js"></script>
-    <script src="controller.js"></script>
+    <script src="script/display.js"></script>
+    <script src="script/model.js"></script>
+    <script src="script/controller.js"></script>
 </head>
 <body>
     <div class="display">
-        <div class="end-game-box">
+        <div class="modal-window">
             <h1>Game Over</h1>
-            <form class="end-game-box__form">
-                <label class="end-game-box__label" for="name">Please enter your name:</label>
-                <input class="end-game-box__input" type="name" id="name" autofocus>
-                <input class="end-game-box__input" type="submit" id="save_button" value="Save">
+            <form class="modal-window__form">
+                <label class="modal-window__label" for="name">Please enter your name:</label>
+                <input class="modal-window__input" type="name" id="name" autofocus>
+                <input class="modal-window__input" type="submit" id="save_button" value="Save">
             </form>
-            <div class="end-game-box__message">
-                <p class="end-game-box__text"></p>
-                <div class="end-game-box__buttons">
-                    <input class="end-game-box__input" type="button" value="New Game" id="new_game_button">
-                    <input class="end-game-box__input" type="button" value="Clear Name" id="clear_name_button">
+            <div class="modal-window__message">
+                <p class="modal-window__text">Thank you for playing<span class="player-name"></span>!</p>
+                <div>
+                    <input class="modal-window__input" type="button" value="New Game" id="new_game_button">
+                    <input class="modal-window__input" type="button" value="Clear Name" id="clear_name_button">
                 </div>
             </div>
         </div>
