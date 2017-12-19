@@ -28,14 +28,18 @@ var modalWindow = {
 
     show: function(name, score) {
         document.querySelector(".modal-window").style.display = "block";
+        document.querySelector(".modal-window__saved-score-text").style.display = "none";
         document.querySelector(".modal-window__score__value").textContent = score;
         if (name === undefined) {
             document.querySelector(".modal-window__form").style.display = "block";
             document.querySelector("#name").focus();
-
+            document.querySelector("#save_score_button").style.display = "none";
         } else {
             document.querySelector(".modal-window__message").style.display = "block";
-            document.querySelector(".player-name").textContent = (name == "") ? name : ", " + name;
+            document.querySelector(".modal-window__thank-you-text").style.display = "block";
+            document.querySelector(".player-name")
+                .textContent = (name == "") ? name : ", " + name;
+            document.querySelector("#save_score_button").style.display = "block";
         }
     },
 
@@ -43,8 +47,8 @@ var modalWindow = {
         document.querySelector(".modal-window__form").style.display = "none";
         document.querySelector(".modal-window__message").style.display = "block";
         document.querySelector(".modal-window__thank-you-text").style.display = "block";
-        document.querySelector(".modal-window__saved-score-text").style.display = "none";
-        document.querySelector(".modal-window__thank-you-text .player-name").textContent = (name == "") ? name : ", " + name;
+        document.querySelector(".modal-window__thank-you-text .player-name")
+            .textContent = (name == "") ? name : ", " + name;
     },
 
     hide: function() {
@@ -61,13 +65,14 @@ var modalWindow = {
     },
 
     showScoreSaved: function(name) {
+        document.querySelector("#save_score_button").style.display = "none";
         document.querySelector(".modal-window__thank-you-text").style.display = "none";
-        document.querySelector(".modal-window__saved-score-text").style.display = "block";
-        console.log(name);
-        document.querySelector(".modal-window__saved-score-text .player-name").textContent = (name == "") ? name : ", " + name;
+        document.querySelector(".modal-window__loader-text").style.display = "block";
+        setTimeout(function() {
+            document.querySelector(".modal-window__loader-text").style.display = "none";
+            document.querySelector(".modal-window__saved-score-text").style.display = "block";
+            document.querySelector(".modal-window__saved-score-text .player-name")
+                .textContent = (name == "") ? name : ", " + name;
+        }, 2000);
     }
 };
-
-
-
-

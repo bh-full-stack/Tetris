@@ -38,18 +38,13 @@ var game = {
 
     run: function() {
         clearTimeout(game.cycle);
-        if(!game.isGameOver) {
+        if (!game.isGameOver) {
             game.descendElement();
             display.refresh(game.getPixels());
             game.cycle = setTimeout(game.run, game.speed);
         } else {
             modalWindow.show(localStorage.name, game.score);
         }
-    },
-
-    end: function() {
-        clearTimeout(game.cycle);
-        modalWindow.show(localStorage.name, game.score);
     },
 
     setRandomElement: function() {
