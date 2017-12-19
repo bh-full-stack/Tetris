@@ -8,6 +8,8 @@ var game = {
     pixelList: [],
     speed: 1000,
     removedRows: 0,
+    score: 0,
+    isGameOver: false,
     elements: [
         bigInt(49200),
         bigInt(120),
@@ -26,6 +28,9 @@ var game = {
     new: function() {
         game.speed = 1 / (2 ** Math.floor(game.removedRows / 10)) * 1000;
         game.isRunning = true;
+        game.isGameOver = false;
+        game.score = 0;
+        game.removedRows = 0;
         game.world = bigInt(0);
         game.setRandomElement();
         game.run();
@@ -33,14 +38,18 @@ var game = {
 
     run: function() {
         clearTimeout(game.cycle);
-        game.descendElement();
-        display.refresh(game.getPixels());
-        game.cycle = setTimeout(game.run, game.speed);
+        if(!game.isGameOver) {
+            game.descendElement();
+            display.refresh(game.getPixels());
+            game.cycle = setTimeout(game.run, game.speed);
+        } else {
+            modalWindow.show(localStorage.name, game.score);
+        }
     },
 
     end: function() {
         clearTimeout(game.cycle);
-        modalWindow.show(localStorage.name);
+        modalWindow.show(localStorage.name, game.score);
     },
 
     setRandomElement: function() {
@@ -76,22 +85,24 @@ var game = {
     },
 
     moveElement: function(direction) {
-        switch (direction) {
-            case "Left":
-                if (game.leftBorder.and(game.element) == 0 && (game.world.and(game.element.divide(2)) == 0)) {
-                    game.element = game.element.divide(2);
-                }
-                break;
-            case "Right":
-                if (game.rightBorder.and(game.element) == 0 && (game.world.and(game.element.multiply(2)) == 0)) {
-                    game.element = game.element.multiply(2);
-                }
-                break;
-            case "Down":
-                game.speed = 20;
-                game.run();
+        if(!game.isGameOver) {
+            switch (direction) {
+                case "Left":
+                    if (game.leftBorder.and(game.element) == 0 && (game.world.and(game.element.divide(2)) == 0)) {
+                        game.element = game.element.divide(2);
+                    }
+                    break;
+                case "Right":
+                    if (game.rightBorder.and(game.element) == 0 && (game.world.and(game.element.multiply(2)) == 0)) {
+                        game.element = game.element.multiply(2);
+                    }
+                    break;
+                case "Down":
+                    game.speed = 20;
+                    game.run();
+            }
+            display.refresh(game.getPixels());
         }
-        display.refresh(game.getPixels());
     },
 
     descendElement: function() {
@@ -101,7 +112,7 @@ var game = {
             game.world = game.world.or(game.element);
             game.removeFullRows();
             if (game.setRandomElement()) {
-                game.end();
+                game.isGameOver = true;
             } else {
                 game.speed = 1 / (2 ** Math.floor(game.removedRows / 10)) * 1000;
             }
@@ -117,6 +128,7 @@ var game = {
                 below = below.multiply(bigInt(2).pow((i + 1) * 10));
                 game.world = above.add(below);
                 game.removedRows += 1;
+                game.score += 10;
             }
         }
     }

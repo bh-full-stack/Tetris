@@ -8,7 +8,7 @@ h1 {
     font-size: 32px;
     text-align: center;
     font-family: monospace;
-    margin-top: 43px;
+    margin-top: 40px;
 }
 
 .display {
@@ -40,10 +40,10 @@ h1 {
     flex-direction: column;
     justify-content: space-around;
     width: 340px;
-    height: 264px;
+    height: 310px;
     background: #9aa680;
     position: absolute;
-    top: 205px;
+    top: 182px;
     border-top: 3px solid black;
     border-bottom: 3px solid black;
 }
@@ -83,5 +83,10 @@ h1 {
 .modal-window__text {
     margin: 5px 0;
     height: 70px;
+}
+
+.modal-window__score {
+    margin-top: 30px;
+    text-align: center;
 }
 

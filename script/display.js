@@ -26,8 +26,9 @@ var display = {
 
 var modalWindow = {
 
-    show: function(name) {
+    show: function(name, score) {
         document.querySelector(".modal-window").style.display = "block";
+        document.querySelector(".modal-window__score__value").textContent = score;
         if (name === undefined) {
             document.querySelector(".modal-window__form").style.display = "block";
             document.querySelector("#name").focus();
