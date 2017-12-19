@@ -32,4 +32,7 @@ window.onload = function() {
         localStorage.removeItem("name");
         modalWindow.showForm();
     };
+    document.querySelector("#save_score_button").onclick = function() {
+        modalWindow.showScoreSaved(localStorage.name);
+    };
 };

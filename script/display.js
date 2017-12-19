@@ -42,7 +42,9 @@ var modalWindow = {
     showMessage: function(name) {
         document.querySelector(".modal-window__form").style.display = "none";
         document.querySelector(".modal-window__message").style.display = "block";
-        document.querySelector(".player-name").textContent = (name == "") ? name : ", " + name;
+        document.querySelector(".modal-window__thank-you-text").style.display = "block";
+        document.querySelector(".modal-window__saved-score-text").style.display = "none";
+        document.querySelector(".modal-window__thank-you-text .player-name").textContent = (name == "") ? name : ", " + name;
     },
 
     hide: function() {
@@ -56,6 +58,13 @@ var modalWindow = {
         document.querySelector("#name").value = "";
         document.querySelector(".modal-window__form").style.display = "block";
         document.querySelector("#name").focus();
+    },
+
+    showScoreSaved: function(name) {
+        document.querySelector(".modal-window__thank-you-text").style.display = "none";
+        document.querySelector(".modal-window__saved-score-text").style.display = "block";
+        console.log(name);
+        document.querySelector(".modal-window__saved-score-text .player-name").textContent = (name == "") ? name : ", " + name;
     }
 };
 

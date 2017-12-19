@@ -80,7 +80,14 @@ h1 {
     margin-top: 32px;
 }
 
-.modal-window__text {
+.modal-window__thank-you-text {
+    display: block;
+    margin: 5px 0;
+    height: 70px;
+}
+
+.modal-window__saved-score-text {
+    display: none;
     margin: 5px 0;
     height: 70px;
 }
