@@ -4,6 +4,7 @@
     <title>Tetris</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="node_modules/big-integer/BigInteger.js"></script>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="script/display.js"></script>
     <script src="script/model.js"></script>
     <script src="script/controller.js"></script>
@@ -12,7 +13,9 @@
     <div class="display">
         <div class="modal-window">
             <h1>Game Over</h1>
-            <h2 class="modal-window__score">Score: <span class="modal-window__score__value"></span></h2>
+            <h2 class="modal-window__score">
+                Score: <span class="modal-window__score__value"></span>
+            </h2>
             <form class="modal-window__form">
                 <label class="modal-window__label" for="name">Please enter your name:</label>
                 <input class="modal-window__input" type="name" id="name" autofocus>
@@ -29,9 +32,12 @@
                     Your score has been saved<span class="player-name"></span>!
                 </p>
                 <div>
-                    <input class="modal-window__input" type="button" value="New Game" id="new_game_button">
-                    <input class="modal-window__input" type="button" value="Clear Name" id="clear_name_button">
-                    <input class="modal-window__input" type="button" value="Save Score" id="save_score_button">
+                    <input class="modal-window__input" type="button" value="New Game"
+                           id="new_game_button">
+                    <input class="modal-window__input" type="button" value="Clear Name"
+                           id="clear_name_button">
+                    <input class="modal-window__input" type="button" value="Save Score"
+                           id="save_score_button">
                 </div>
             </div>
         </div>

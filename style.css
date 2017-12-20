@@ -73,7 +73,6 @@ h1 {
 }
 
 .modal-window__message {
-    display: none;
     text-align: center;
     font-size: 23px;
     line-height: 1.5em;
@@ -85,22 +84,12 @@ h1 {
     height: 70px;
 }
 
-.modal-window__thank-you-text {
-    display: block;
-}
-
-.modal-window__loader-text {
-    display: none;
-}
-
-.modal-window__saved-score-text {
-    display: none;
-}
-
 .modal-window__score {
     margin-top: 30px;
     text-align: center;
 }
 
-
-
+.modal-window__thank-you-text, .modal-window__loader-text, .modal-window__saved-score-text,
+#new_game_button, #clear_name_button, #save_score_button {
+    display: none;
+}

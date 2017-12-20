@@ -4,7 +4,8 @@
   "description": "",
   "main": "script.js",
   "dependencies": {
-    "big-integer": "^1.6.26"
+    "big-integer": "^1.6.26",
+    "jquery": "^3.2.1"
   },
   "devDependencies": {},
   "scripts": {

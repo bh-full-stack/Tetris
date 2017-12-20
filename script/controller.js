@@ -33,6 +33,6 @@ window.onload = function() {
         modalWindow.showForm();
     };
     document.querySelector("#save_score_button").onclick = function() {
-        modalWindow.showScoreSaved(localStorage.name);
+        modalWindow.showScoreSaved(localStorage.name, game.score);
     };
 };

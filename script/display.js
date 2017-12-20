@@ -26,53 +26,80 @@ var display = {
 
 var modalWindow = {
 
+    resetElements: function() {
+        document.querySelectorAll(".modal-window *").forEach(function(element) {
+            element.removeAttribute("style");
+        });
+    },
+
+    showElements: function(selectors) {
+        selectors.forEach(function(selector){
+            document.querySelector(selector).style.display = "block";
+        });
+    },
+
     show: function(name, score) {
         document.querySelector(".modal-window").style.display = "block";
-        document.querySelector(".modal-window__saved-score-text").style.display = "none";
+        modalWindow.resetElements();
         document.querySelector(".modal-window__score__value").textContent = score;
         if (name === undefined) {
-            document.querySelector(".modal-window__form").style.display = "block";
+            modalWindow.showElements([".modal-window__form"]);
             document.querySelector("#name").focus();
-            document.querySelector("#save_score_button").style.display = "none";
         } else {
-            document.querySelector(".modal-window__message").style.display = "block";
-            document.querySelector(".modal-window__thank-you-text").style.display = "block";
+            modalWindow.showElements([
+                ".modal-window__message",
+                ".modal-window__thank-you-text",
+                "#save_score_button",
+                "#clear_name_button",
+                "#new_game_button"
+            ]);
             document.querySelector(".player-name")
                 .textContent = (name == "") ? name : ", " + name;
-            document.querySelector("#save_score_button").style.display = "block";
         }
     },
 
     showMessage: function(name) {
-        document.querySelector(".modal-window__form").style.display = "none";
-        document.querySelector(".modal-window__message").style.display = "block";
-        document.querySelector(".modal-window__thank-you-text").style.display = "block";
+        modalWindow.resetElements();
+        modalWindow.showElements([
+            ".modal-window__message",
+            ".modal-window__thank-you-text",
+            "#save_score_button",
+            "#clear_name_button",
+            "#new_game_button"
+        ]);
         document.querySelector(".modal-window__thank-you-text .player-name")
             .textContent = (name == "") ? name : ", " + name;
     },
 
     hide: function() {
+        modalWindow.resetElements();
         document.querySelector(".modal-window").style.display = "none";
-        document.querySelector(".modal-window__message").style.display = "none";
-        document.querySelector(".modal-window__form").style.display = "none";
     },
 
     showForm: function() {
-        document.querySelector(".modal-window__message").style.display = "none";
+        modalWindow.resetElements();
+        modalWindow.showElements([".modal-window__form"]);
         document.querySelector("#name").value = "";
-        document.querySelector(".modal-window__form").style.display = "block";
         document.querySelector("#name").focus();
     },
 
-    showScoreSaved: function(name) {
-        document.querySelector("#save_score_button").style.display = "none";
-        document.querySelector(".modal-window__thank-you-text").style.display = "none";
-        document.querySelector(".modal-window__loader-text").style.display = "block";
-        setTimeout(function() {
-            document.querySelector(".modal-window__loader-text").style.display = "none";
-            document.querySelector(".modal-window__saved-score-text").style.display = "block";
-            document.querySelector(".modal-window__saved-score-text .player-name")
-                .textContent = (name == "") ? name : ", " + name;
-        }, 2000);
+    showScoreSaved: function(name, score) {
+        modalWindow.resetElements();
+        modalWindow.showElements([".modal-window__loader-text"]);
+        $.post(
+            "http://leaderboard.local/save_data.php",
+            {
+                nick: name,
+                game: "Tetris",
+                score: score
+            },
+            function(data) {
+                modalWindow.resetElements();
+                modalWindow.showElements([".modal-window__saved-score-text", "#new_game_button"]);
+                document.querySelector(".modal-window__saved-score-text .player-name")
+                    .textContent = (name == "") ? name : ", " + name;
+            },
+            "json"
+        );
     }
 };
