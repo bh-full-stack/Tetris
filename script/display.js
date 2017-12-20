@@ -93,11 +93,17 @@ var modalWindow = {
                 game: "Tetris",
                 score: score
             },
-            function(data) {
-                modalWindow.resetElements();
-                modalWindow.showElements([".modal-window__saved-score-text", "#new_game_button"]);
-                document.querySelector(".modal-window__saved-score-text .player-name")
-                    .textContent = (name == "") ? name : ", " + name;
+            function(response) {
+                console.log(response.success);
+                if (response.success) {
+                    modalWindow.resetElements();
+                    modalWindow.showElements([".modal-window__saved-score-text", "#new_game_button"]);
+                    document.querySelector(".modal-window__saved-score-text .player-name")
+                        .textContent = (name == "") ? name : ", " + name;
+                } else {
+                    modalWindow.resetElements();
+                    modalWindow.showElements([".modal-window__save-error-text", "#new_game_button"]);
+                }
             },
             "json"
         );
