@@ -6,13 +6,17 @@ window.onload = function() {
     document.onkeydown = function(event) {
         switch (event.key) {
             case "ArrowLeft":
-                game.moveElement("Left");
+                game.interactWithElement("Left");
                 break;
             case "ArrowRight":
-                game.moveElement("Right");
+                game.interactWithElement("Right");
                 break;
             case "ArrowDown":
-                game.moveElement("Down");
+                game.interactWithElement("Down");
+                break;
+            case "ArrowUp":
+                game.interactWithElement("Up");
+                break;
         }
     };
 
