@@ -94,18 +94,18 @@ var modalWindow = {
                 score: score
             },
             function(response) {
-                console.log(response.success);
-                if (response.success) {
-                    modalWindow.resetElements();
-                    modalWindow.showElements([".modal-window__saved-score-text", "#new_game_button"]);
-                    document.querySelector(".modal-window__saved-score-text .player-name")
-                        .textContent = (name == "") ? name : ", " + name;
-                } else {
-                    modalWindow.resetElements();
-                    modalWindow.showElements([".modal-window__save-error-text", "#new_game_button"]);
-                }
+                modalWindow.resetElements();
+                modalWindow.showElements([".modal-window__saved-score-text", "#new_game_button"]);
+                document.querySelector(".modal-window__saved-score-text .player-name")
+                    .textContent = ", " + response.nick;
             },
             "json"
-        );
+        ).fail(function(xhr) {
+            var message = xhr.responseJSON ? xhr.responseJSON.message : "Unknown server error";
+            console.log(xhr);
+            modalWindow.resetElements();
+            modalWindow.showElements([".modal-window__save-error-text", "#new_game_button"]);
+            document.querySelector(".error-message").textContent = message;
+        });
     }
 };
