@@ -23,6 +23,14 @@ var game = {
     init: function() {
         display.render();
         game.createBorders();
+        modalWindow.init({
+            container: ".display",
+            pathToPackage: "node_modules/leaderboardsdk",
+            game: "Tetris",
+            eventHandlers: {
+                onClickNewGameBtn: game.new
+            }
+        });
     },
 
     new: function() {

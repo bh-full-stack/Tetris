@@ -5,45 +5,12 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="node_modules/big-integer/BigInteger.js"></script>
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/leaderboardsdk/modal-window.js"></script>
     <script src="script/display.js"></script>
     <script src="script/model.js"></script>
     <script src="script/controller.js"></script>
 </head>
 <body>
-    <div class="display">
-        <div class="modal-window">
-            <h1>Game Over</h1>
-            <h2 class="modal-window__score">
-                Score: <span class="modal-window__score__value"></span>
-            </h2>
-            <form class="modal-window__form">
-                <label class="modal-window__label" for="name">Please enter your name:</label>
-                <input class="modal-window__input" type="name" id="name" autofocus>
-                <input class="modal-window__input" type="submit" id="save_button" value="Save">
-            </form>
-            <div class="modal-window__message">
-                <p class="modal-window__thank-you-text">
-                    Thank you for playing<span class="player-name"></span>!
-                </p>
-                <p class="modal-window__loader-text">
-                    Saving...
-                </p>
-                <p class="modal-window__saved-score-text">
-                    Your score has been saved<span class="player-name"></span>!
-                </p>
-                <p class="modal-window__save-error-text">
-                    Failed to save score: <span class="error-message"></span>!
-                </p>
-                <div>
-                    <input class="modal-window__input" type="button" value="New Game"
-                           id="new_game_button">
-                    <input class="modal-window__input" type="button" value="Clear Name"
-                           id="clear_name_button">
-                    <input class="modal-window__input" type="button" value="Save Score"
-                           id="save_score_button">
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="display"></div>
 </body>
 </html>

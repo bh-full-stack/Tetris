@@ -5,7 +5,8 @@
   "main": "script.js",
   "dependencies": {
     "big-integer": "^1.6.26",
-    "jquery": "^3.2.1"
+    "jquery": "^3.2.1",
+    "leaderboardsdk": "git+https://github.com/bh-full-stack/LeaderboardSDK.git"
   },
   "devDependencies": {},
   "scripts": {
