@@ -88,9 +88,3 @@ h1 {
     margin-top: 30px;
     text-align: center;
 }
-
-.modal-window__thank-you-text, .modal-window__loader-text,
-.modal-window__saved-score-text, .modal-window__save-error-text,
-#new_game_button, #clear_name_button, #save_score_button {
-    display: none;
-}
