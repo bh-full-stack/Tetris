@@ -1,0 +1,9 @@
+version: '3'
+services:
+  tetris:
+    build:
+      context: "./images/"
+    ports:
+      - "81:80"
+    volumes:
+      - "../:/var/www/html"
