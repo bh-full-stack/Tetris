@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-yarn install
+./public/yarn install
 
 
 
