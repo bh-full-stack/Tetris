@@ -2,8 +2,10 @@ version: '3'
 services:
   tetris:
     build:
-      context: "./images/tetris"
+      context: "."
+      args:
+        - APP_HOST=localhost
     volumes:
-      - "../:/var/www/html"
+      - "../public:/var/www/html"
     ports:
       - "81:80"

@@ -2,11 +2,11 @@ server {
 	listen 80;
 	listen [::]:80;
 
-	root /var/www/html/public/;
+	root /var/www/html/;
 
 	index index.html;
 
-	server_name tetris;
+	server_name [servername];
 
 	location / {
 		try_files $uri $uri/ /index.html;
