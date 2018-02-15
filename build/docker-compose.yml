@@ -1,0 +1,11 @@
+version: '3'
+services:
+  tetris:
+    build:
+      context: "."
+      args:
+        - APP_HOST=localhost
+    volumes:
+      - "../public:/var/www/html"
+    ports:
+      - "81:80"
