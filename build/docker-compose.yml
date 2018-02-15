@@ -2,7 +2,7 @@ version: '3'
 services:
   tetris:
     build:
-      context: "./images/"
+      context: "./image/"
     ports:
       - "81:80"
     volumes:
