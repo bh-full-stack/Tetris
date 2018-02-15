@@ -1,5 +1,9 @@
 FROM node
 
+ARG APP_HOST
+
+ENV APP_HOST ${APP_HOST}
+
 RUN apt-get update -y && apt-get install -y apt-transport-https && \
     apt-get install -y curl nginx
 
@@ -18,6 +22,8 @@ WORKDIR /var/www/html
 ADD ./etc /etc
 
 RUN ln -s /etc/nginx/sites-available/tetris /etc/nginx/sites-enabled/tetris
+
+RUN sed -i -e "s/server_name \[servername\];/server_name ${APP_HOST};/g" /etc/nginx/sites-available/tetris
 
 EXPOSE 80
 
