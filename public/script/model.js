@@ -27,6 +27,7 @@ var game = {
             container: ".display",
             pathToPackage: "node_modules/leaderboardsdk",
             game: "Tetris",
+            env: "live",
             eventHandlers: {
                 onClickNewGameBtn: game.new
             }
